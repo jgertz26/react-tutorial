@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium from 'radium';
+import styled from 'styled-components';
 import Person from './Person/Person'
+
+const StyledButton = styled.button`
+    background-color: ${props => props.alt ? 'red' : 'green'};
+    color: white;
+    font: inherit;
+    border: 1x solid blue;
+    padding: 8px;
+    cursor: pointer;
+    &:hover {
+      background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+      color: black;
+    }
+`;
 
 class App extends Component {
 
@@ -94,13 +107,13 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React app</h1>
         <p className={classes.join(' ')}>This is working wowowow</p>
-        <button
-          style={style}
-          onClick={this.togglePersonsHandler}>Switch Name</button>
+        <StyledButton alt={this.state.showPersons} onClick={this.togglePersonsHandler}>
+          Switch Name
+        </StyledButton>
         {persons}
       </div>
     );
   }
 }
 
-export default Radium(App);
+export default App;
